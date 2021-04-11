@@ -3,10 +3,10 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using webapp.Data.Entities;
-using webapp.Data.Enums;
+using Webapp.Data.Entities;
+using Webapp.Data.Enums;
 
-namespace webapp.Data.Configuration
+namespace Webapp.Data.Configuration
 {
     public class CategoryConfiguration : IEntityTypeConfiguration<Category>
     {

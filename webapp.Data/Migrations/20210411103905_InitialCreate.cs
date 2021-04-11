@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace webapp.Data.Migrations
+namespace Webapp.Data.Migrations
 {
-    public partial class initial : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -17,6 +17,21 @@ namespace webapp.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AppConfigs", x => x.Key);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AppRoleClaim",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    RoleId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ClaimType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ClaimValue = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AppRoleClaim", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -35,12 +50,79 @@ namespace webapp.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AppUser",
+                name: "AppUserClaim",
+                columns: table => new
+                {
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    LoginProvider = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ProviderKey = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ProviderDisplayName = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AppUserClaim", x => x.UserId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AppUserClaims",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ClaimType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ClaimValue = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AppUserClaims", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AppUserClaimString",
+                columns: table => new
+                {
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    LoginProvider = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ProviderKey = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ProviderDisplayName = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AppUserClaimString", x => x.UserId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AppUserRoles",
+                columns: table => new
+                {
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    RoleId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AppUserRoles", x => new { x.UserId, x.RoleId });
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AppUserRolesString",
+                columns: table => new
+                {
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    RoleId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AppUserRolesString", x => new { x.UserId, x.RoleId });
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AppUsers",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FirstName = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
                     Dob = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -59,7 +141,35 @@ namespace webapp.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AppUser", x => x.Id);
+                    table.PrimaryKey("PK_AppUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AppUserToken",
+                columns: table => new
+                {
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    LoginProvider = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Value = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AppUserToken", x => x.UserId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AppUserTokenString",
+                columns: table => new
+                {
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    LoginProvider = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Value = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AppUserTokenString", x => x.UserId);
                 });
 
             migrationBuilder.CreateTable(
@@ -148,6 +258,35 @@ namespace webapp.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "RoleClaims",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    RoleId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ClaimType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ClaimValue = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RoleClaims", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Roles",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    NormalizedName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Roles", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Slides",
                 columns: table => new
                 {
@@ -163,6 +302,46 @@ namespace webapp.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Slides", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UserClaims",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ClaimType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ClaimValue = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserClaims", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Users",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    NormalizedUserName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    NormalizedEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    EmailConfirmed = table.Column<bool>(type: "bit", nullable: false),
+                    PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SecurityStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNumberConfirmed = table.Column<bool>(type: "bit", nullable: false),
+                    TwoFactorEnabled = table.Column<bool>(type: "bit", nullable: false),
+                    LockoutEnd = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
+                    LockoutEnabled = table.Column<bool>(type: "bit", nullable: false),
+                    AccessFailedCount = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Users", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -184,9 +363,9 @@ namespace webapp.Data.Migrations
                 {
                     table.PrimaryKey("PK_Orders", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Orders_AppUser_AppUserId",
+                        name: "FK_Orders_AppUsers_AppUserId",
                         column: x => x.AppUserId,
-                        principalTable: "AppUser",
+                        principalTable: "AppUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -211,9 +390,9 @@ namespace webapp.Data.Migrations
                 {
                     table.PrimaryKey("PK_Transactions", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Transactions_AppUser_UserId",
+                        name: "FK_Transactions_AppUsers_UserId",
                         column: x => x.UserId,
-                        principalTable: "AppUser",
+                        principalTable: "AppUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -264,9 +443,9 @@ namespace webapp.Data.Migrations
                 {
                     table.PrimaryKey("PK_Carts", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Carts_AppUser_UserId",
+                        name: "FK_Carts_AppUsers_UserId",
                         column: x => x.UserId,
-                        principalTable: "AppUser",
+                        principalTable: "AppUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -333,13 +512,13 @@ namespace webapp.Data.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ProductId = table.Column<int>(type: "int", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Details = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Details = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
                     SeoDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SeoTitle = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SeoAlias = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LanguageId = table.Column<string>(type: "varchar(5)", nullable: true)
+                    SeoAlias = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    LanguageId = table.Column<string>(type: "varchar(5)", unicode: false, maxLength: 5, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -349,7 +528,7 @@ namespace webapp.Data.Migrations
                         column: x => x.LanguageId,
                         principalTable: "Languages",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_ProductTranslations_Products_ProductId",
                         column: x => x.ProductId,
@@ -395,6 +574,21 @@ namespace webapp.Data.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "AppRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Description", "Name", "NormalizedName" },
+                values: new object[] { new Guid("425ac812-3905-4dc3-8958-edc00b8c4bf7"), "bcfbd01a-d6cd-4be3-8719-9371b23356ff", "none", "admin", "admin" });
+
+            migrationBuilder.InsertData(
+                table: "AppUserRoles",
+                columns: new[] { "RoleId", "UserId" },
+                values: new object[] { new Guid("425ac812-3905-4dc3-8958-edc00b8c4bf7"), new Guid("f5c37570-fcdc-4993-8496-e2c50fbc2923") });
+
+            migrationBuilder.InsertData(
+                table: "AppUsers",
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Dob", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[] { new Guid("f5c37570-fcdc-4993-8496-e2c50fbc2923"), 0, "b81dc3ec-2ada-457e-8ff6-ebea653914a4", new DateTime(2000, 8, 17, 0, 0, 0, 0, DateTimeKind.Unspecified), "nvpcntt08@gmail.com", true, "phuong", "nguyen", false, null, "nvpcntt08@gmail.com", "admin", "AQAAAAEAACcQAAAAEP7q8CNhATxrrAbeEmX19GUYIUQIOzOsjiQYmowoPs90JyLHEGppsZI7klehN+0jpg==", null, false, "", false, "admin" });
+
+            migrationBuilder.InsertData(
                 table: "Categories",
                 columns: new[] { "Id", "IsShowOnHome", "ParentId", "SortOrder", "Status" },
                 values: new object[,]
@@ -415,7 +609,7 @@ namespace webapp.Data.Migrations
             migrationBuilder.InsertData(
                 table: "Products",
                 columns: new[] { "Id", "DateCreated", "IsFeatured", "OriginalPrice", "Price" },
-                values: new object[] { 1, new DateTime(2021, 4, 2, 11, 1, 39, 929, DateTimeKind.Local).AddTicks(7148), null, 100000m, 200000m });
+                values: new object[] { 1, new DateTime(2021, 4, 11, 17, 39, 4, 267, DateTimeKind.Local).AddTicks(4589), null, 100000m, 200000m });
 
             migrationBuilder.InsertData(
                 table: "CategoryTranslations",
@@ -504,7 +698,31 @@ namespace webapp.Data.Migrations
                 name: "AppConfigs");
 
             migrationBuilder.DropTable(
+                name: "AppRoleClaim");
+
+            migrationBuilder.DropTable(
                 name: "AppRoles");
+
+            migrationBuilder.DropTable(
+                name: "AppUserClaim");
+
+            migrationBuilder.DropTable(
+                name: "AppUserClaims");
+
+            migrationBuilder.DropTable(
+                name: "AppUserClaimString");
+
+            migrationBuilder.DropTable(
+                name: "AppUserRoles");
+
+            migrationBuilder.DropTable(
+                name: "AppUserRolesString");
+
+            migrationBuilder.DropTable(
+                name: "AppUserToken");
+
+            migrationBuilder.DropTable(
+                name: "AppUserTokenString");
 
             migrationBuilder.DropTable(
                 name: "Carts");
@@ -531,10 +749,22 @@ namespace webapp.Data.Migrations
                 name: "Promotions");
 
             migrationBuilder.DropTable(
+                name: "RoleClaims");
+
+            migrationBuilder.DropTable(
+                name: "Roles");
+
+            migrationBuilder.DropTable(
                 name: "Slides");
 
             migrationBuilder.DropTable(
                 name: "Transactions");
+
+            migrationBuilder.DropTable(
+                name: "UserClaims");
+
+            migrationBuilder.DropTable(
+                name: "Users");
 
             migrationBuilder.DropTable(
                 name: "Orders");
@@ -549,7 +779,7 @@ namespace webapp.Data.Migrations
                 name: "Products");
 
             migrationBuilder.DropTable(
-                name: "AppUser");
+                name: "AppUsers");
         }
     }
 }

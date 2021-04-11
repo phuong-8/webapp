@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using webapp.Data.Entities;
+using Webapp.Data.Entities;
 
-namespace webapp.Data.Extensions
+namespace Webapp.Data.Extensions
 {
     public static class ModelBuilderExtensions
     {

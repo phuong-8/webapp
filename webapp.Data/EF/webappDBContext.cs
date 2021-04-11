@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using webapp.Data.Configuration;
-using webapp.Data.Entities;
-using webapp.Data.Extensions;
+using Webapp.Data.Configuration;
+using Webapp.Data.Entities;
+using Webapp.Data.Extensions;
 
-namespace webapp.Data.EF
+namespace Webapp.Data.EF
 {
     public class WebappDBContext : IdentityDbContext
     {
@@ -20,7 +20,6 @@ namespace webapp.Data.EF
             //fluent API
             modelBuilder.ApplyConfiguration(new CartConfiguration());
 
-            modelBuilder.ApplyConfiguration(new AppRoleConfiguration());
             modelBuilder.ApplyConfiguration(new AppConfigConfiguration());
             modelBuilder.ApplyConfiguration(new ProductConfiguration());
             modelBuilder.ApplyConfiguration(new CategoryConfiguration());
@@ -31,13 +30,14 @@ namespace webapp.Data.EF
             modelBuilder.ApplyConfiguration(new CategoryTranslationConfiguration());
             modelBuilder.ApplyConfiguration(new ContactConfiguration());
             modelBuilder.ApplyConfiguration(new LanguageConfiguration());
-            modelBuilder.ApplyConfiguration(new ProductImageConfiguration());
+            modelBuilder.ApplyConfiguration(new ProductTranslationConfiguration());
             modelBuilder.ApplyConfiguration(new PromotionConfiguration());
             modelBuilder.ApplyConfiguration(new TransactionConfiguration());
-            modelBuilder.ApplyConfiguration(new SlideConfiguration());
 
             modelBuilder.ApplyConfiguration(new AppUserConfiguration());
             modelBuilder.ApplyConfiguration(new AppRoleConfiguration());
+            modelBuilder.ApplyConfiguration(new ProductImageConfiguration());
+            modelBuilder.ApplyConfiguration(new SlideConfiguration());
 
             modelBuilder.Entity<IdentityUserClaim<Guid>>().ToTable("AppUserClaims");
             modelBuilder.Entity<IdentityUserRole<Guid>>().ToTable("AppUserRoles").HasKey(x=>new { x.UserId, x.RoleId});

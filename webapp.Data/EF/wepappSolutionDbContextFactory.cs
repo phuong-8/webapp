@@ -6,9 +6,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace webapp.Data.EF
+namespace Webapp.Data.EF
 {
-    public class wepappSolutionDbContextFactory : IDesignTimeDbContextFactory<WebappDBContext>
+    public class WepappSolutionDbContextFactory : IDesignTimeDbContextFactory<WebappDBContext>
     {
         public WebappDBContext CreateDbContext(string[] args)
         {

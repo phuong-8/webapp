@@ -1,9 +1,9 @@
-﻿using webapp.Data.Enums;
+﻿using Webapp.Data.Enums;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace webapp.Data.Entities
+namespace Webapp.Data.Entities
 {
     public class Promotion
     {

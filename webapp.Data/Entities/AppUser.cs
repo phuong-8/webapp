@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace webapp.Data.Entities
+namespace Webapp.Data.Entities
 {
     public class AppUser : IdentityUser<Guid>
     {

@@ -4,12 +4,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using webapp.Data.EF;
+using Webapp.Data.EF;
 
-namespace webapp.Data.Migrations
+namespace Webapp.Data.Migrations
 {
     [DbContext(typeof(WebappDBContext))]
-    partial class webappDBContextModelSnapshot : ModelSnapshot
+    partial class WebappDBContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -285,7 +285,7 @@ namespace webapp.Data.Migrations
                     b.ToTable("AppUserTokenString");
                 });
 
-            modelBuilder.Entity("webapp.Data.Entities.AppConfig", b =>
+            modelBuilder.Entity("Webapp.Data.Entities.AppConfig", b =>
                 {
                     b.Property<string>("Key")
                         .HasColumnType("nvarchar(450)");
@@ -316,7 +316,7 @@ namespace webapp.Data.Migrations
                         });
                 });
 
-            modelBuilder.Entity("webapp.Data.Entities.AppRole", b =>
+            modelBuilder.Entity("Webapp.Data.Entities.AppRole", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -344,14 +344,14 @@ namespace webapp.Data.Migrations
                         new
                         {
                             Id = new Guid("425ac812-3905-4dc3-8958-edc00b8c4bf7"),
-                            ConcurrencyStamp = "3a9ce8a6-a3df-4e44-8d63-0cc82eb0231d",
+                            ConcurrencyStamp = "bcfbd01a-d6cd-4be3-8719-9371b23356ff",
                             Description = "none",
                             Name = "admin",
                             NormalizedName = "admin"
                         });
                 });
 
-            modelBuilder.Entity("webapp.Data.Entities.AppUser", b =>
+            modelBuilder.Entity("Webapp.Data.Entities.AppUser", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -421,7 +421,7 @@ namespace webapp.Data.Migrations
                         {
                             Id = new Guid("f5c37570-fcdc-4993-8496-e2c50fbc2923"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "ecb11ef8-1a6d-49d2-9699-e741101b263d",
+                            ConcurrencyStamp = "b81dc3ec-2ada-457e-8ff6-ebea653914a4",
                             Dob = new DateTime(2000, 8, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "nvpcntt08@gmail.com",
                             EmailConfirmed = true,
@@ -430,7 +430,7 @@ namespace webapp.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "nvpcntt08@gmail.com",
                             NormalizedUserName = "admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEC9stmRzhFo5G8sLJ1UbO+0zEAe2dtVPUR51Nqo2vEX03l78NZE5klXal279NK3DUg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEP7q8CNhATxrrAbeEmX19GUYIUQIOzOsjiQYmowoPs90JyLHEGppsZI7klehN+0jpg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -438,7 +438,7 @@ namespace webapp.Data.Migrations
                         });
                 });
 
-            modelBuilder.Entity("webapp.Data.Entities.Cart", b =>
+            modelBuilder.Entity("Webapp.Data.Entities.Cart", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -471,7 +471,7 @@ namespace webapp.Data.Migrations
                     b.ToTable("Carts");
                 });
 
-            modelBuilder.Entity("webapp.Data.Entities.Category", b =>
+            modelBuilder.Entity("Webapp.Data.Entities.Category", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -513,7 +513,7 @@ namespace webapp.Data.Migrations
                         });
                 });
 
-            modelBuilder.Entity("webapp.Data.Entities.CategoryTranslation", b =>
+            modelBuilder.Entity("Webapp.Data.Entities.CategoryTranslation", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -600,7 +600,7 @@ namespace webapp.Data.Migrations
                         });
                 });
 
-            modelBuilder.Entity("webapp.Data.Entities.Contact", b =>
+            modelBuilder.Entity("Webapp.Data.Entities.Contact", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -636,7 +636,7 @@ namespace webapp.Data.Migrations
                     b.ToTable("Contacts");
                 });
 
-            modelBuilder.Entity("webapp.Data.Entities.Language", b =>
+            modelBuilder.Entity("Webapp.Data.Entities.Language", b =>
                 {
                     b.Property<string>("Id")
                         .HasMaxLength(5)
@@ -670,7 +670,7 @@ namespace webapp.Data.Migrations
                         });
                 });
 
-            modelBuilder.Entity("webapp.Data.Entities.Order", b =>
+            modelBuilder.Entity("Webapp.Data.Entities.Order", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -708,7 +708,7 @@ namespace webapp.Data.Migrations
                     b.ToTable("Orders");
                 });
 
-            modelBuilder.Entity("webapp.Data.Entities.OrderDetail", b =>
+            modelBuilder.Entity("Webapp.Data.Entities.OrderDetail", b =>
                 {
                     b.Property<int>("OrderId")
                         .HasColumnType("int");
@@ -729,7 +729,7 @@ namespace webapp.Data.Migrations
                     b.ToTable("OrderDetails");
                 });
 
-            modelBuilder.Entity("webapp.Data.Entities.Product", b =>
+            modelBuilder.Entity("Webapp.Data.Entities.Product", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -766,7 +766,7 @@ namespace webapp.Data.Migrations
                         new
                         {
                             Id = 1,
-                            DateCreated = new DateTime(2021, 4, 3, 8, 44, 30, 759, DateTimeKind.Local).AddTicks(1462),
+                            DateCreated = new DateTime(2021, 4, 11, 17, 39, 4, 267, DateTimeKind.Local).AddTicks(4589),
                             OriginalPrice = 100000m,
                             Price = 200000m,
                             Stock = 0,
@@ -774,7 +774,7 @@ namespace webapp.Data.Migrations
                         });
                 });
 
-            modelBuilder.Entity("webapp.Data.Entities.ProductImage", b =>
+            modelBuilder.Entity("Webapp.Data.Entities.ProductImage", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -814,7 +814,7 @@ namespace webapp.Data.Migrations
                     b.ToTable("ProductImages");
                 });
 
-            modelBuilder.Entity("webapp.Data.Entities.ProductInCategory", b =>
+            modelBuilder.Entity("Webapp.Data.Entities.ProductInCategory", b =>
                 {
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
@@ -836,30 +836,40 @@ namespace webapp.Data.Migrations
                         });
                 });
 
-            modelBuilder.Entity("webapp.Data.Entities.ProductTranslation", b =>
+            modelBuilder.Entity("Webapp.Data.Entities.ProductTranslation", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
+                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
+                        .HasAnnotation("SqlServer:IdentitySeed", 1)
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Details")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<string>("LanguageId")
+                        .IsRequired()
+                        .HasMaxLength(5)
+                        .IsUnicode(false)
                         .HasColumnType("varchar(5)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
                     b.Property<string>("SeoAlias")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("SeoDescription")
                         .HasColumnType("nvarchar(max)");
@@ -902,7 +912,7 @@ namespace webapp.Data.Migrations
                         });
                 });
 
-            modelBuilder.Entity("webapp.Data.Entities.Promotion", b =>
+            modelBuilder.Entity("Webapp.Data.Entities.Promotion", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -944,7 +954,7 @@ namespace webapp.Data.Migrations
                     b.ToTable("Promotions");
                 });
 
-            modelBuilder.Entity("webapp.Data.Entities.Slide", b =>
+            modelBuilder.Entity("Webapp.Data.Entities.Slide", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -984,7 +994,7 @@ namespace webapp.Data.Migrations
                     b.ToTable("Slides");
                 });
 
-            modelBuilder.Entity("webapp.Data.Entities.Transaction", b =>
+            modelBuilder.Entity("Webapp.Data.Entities.Transaction", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1027,15 +1037,15 @@ namespace webapp.Data.Migrations
                     b.ToTable("Transactions");
                 });
 
-            modelBuilder.Entity("webapp.Data.Entities.Cart", b =>
+            modelBuilder.Entity("Webapp.Data.Entities.Cart", b =>
                 {
-                    b.HasOne("webapp.Data.Entities.Product", "Product")
+                    b.HasOne("Webapp.Data.Entities.Product", "Product")
                         .WithMany("Carts")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("webapp.Data.Entities.AppUser", "AppUser")
+                    b.HasOne("Webapp.Data.Entities.AppUser", "AppUser")
                         .WithMany("Carts")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1046,15 +1056,15 @@ namespace webapp.Data.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("webapp.Data.Entities.CategoryTranslation", b =>
+            modelBuilder.Entity("Webapp.Data.Entities.CategoryTranslation", b =>
                 {
-                    b.HasOne("webapp.Data.Entities.Category", "Category")
+                    b.HasOne("Webapp.Data.Entities.Category", "Category")
                         .WithMany("CategoryTranslations")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("webapp.Data.Entities.Language", "Language")
+                    b.HasOne("Webapp.Data.Entities.Language", "Language")
                         .WithMany("CategoryTranslations")
                         .HasForeignKey("LanguageId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1065,24 +1075,24 @@ namespace webapp.Data.Migrations
                     b.Navigation("Language");
                 });
 
-            modelBuilder.Entity("webapp.Data.Entities.Order", b =>
+            modelBuilder.Entity("Webapp.Data.Entities.Order", b =>
                 {
-                    b.HasOne("webapp.Data.Entities.AppUser", "AppUser")
+                    b.HasOne("Webapp.Data.Entities.AppUser", "AppUser")
                         .WithMany("Orders")
                         .HasForeignKey("AppUserId");
 
                     b.Navigation("AppUser");
                 });
 
-            modelBuilder.Entity("webapp.Data.Entities.OrderDetail", b =>
+            modelBuilder.Entity("Webapp.Data.Entities.OrderDetail", b =>
                 {
-                    b.HasOne("webapp.Data.Entities.Order", "Order")
+                    b.HasOne("Webapp.Data.Entities.Order", "Order")
                         .WithMany("OrderDetails")
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("webapp.Data.Entities.Product", "Product")
+                    b.HasOne("Webapp.Data.Entities.Product", "Product")
                         .WithMany("OrderDetails")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1093,9 +1103,9 @@ namespace webapp.Data.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("webapp.Data.Entities.ProductImage", b =>
+            modelBuilder.Entity("Webapp.Data.Entities.ProductImage", b =>
                 {
-                    b.HasOne("webapp.Data.Entities.Product", "Product")
+                    b.HasOne("Webapp.Data.Entities.Product", "Product")
                         .WithMany("ProductImages")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1104,15 +1114,15 @@ namespace webapp.Data.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("webapp.Data.Entities.ProductInCategory", b =>
+            modelBuilder.Entity("Webapp.Data.Entities.ProductInCategory", b =>
                 {
-                    b.HasOne("webapp.Data.Entities.Category", "Category")
+                    b.HasOne("Webapp.Data.Entities.Category", "Category")
                         .WithMany("ProductInCategories")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("webapp.Data.Entities.Product", "Product")
+                    b.HasOne("Webapp.Data.Entities.Product", "Product")
                         .WithMany("ProductInCategories")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1123,13 +1133,15 @@ namespace webapp.Data.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("webapp.Data.Entities.ProductTranslation", b =>
+            modelBuilder.Entity("Webapp.Data.Entities.ProductTranslation", b =>
                 {
-                    b.HasOne("webapp.Data.Entities.Language", "Language")
+                    b.HasOne("Webapp.Data.Entities.Language", "Language")
                         .WithMany("ProductTranslations")
-                        .HasForeignKey("LanguageId");
+                        .HasForeignKey("LanguageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("webapp.Data.Entities.Product", "Product")
+                    b.HasOne("Webapp.Data.Entities.Product", "Product")
                         .WithMany("ProductTranslations")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1140,9 +1152,9 @@ namespace webapp.Data.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("webapp.Data.Entities.Transaction", b =>
+            modelBuilder.Entity("Webapp.Data.Entities.Transaction", b =>
                 {
-                    b.HasOne("webapp.Data.Entities.AppUser", "AppUser")
+                    b.HasOne("Webapp.Data.Entities.AppUser", "AppUser")
                         .WithMany("Transactions")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1151,7 +1163,7 @@ namespace webapp.Data.Migrations
                     b.Navigation("AppUser");
                 });
 
-            modelBuilder.Entity("webapp.Data.Entities.AppUser", b =>
+            modelBuilder.Entity("Webapp.Data.Entities.AppUser", b =>
                 {
                     b.Navigation("Carts");
 
@@ -1160,26 +1172,26 @@ namespace webapp.Data.Migrations
                     b.Navigation("Transactions");
                 });
 
-            modelBuilder.Entity("webapp.Data.Entities.Category", b =>
+            modelBuilder.Entity("Webapp.Data.Entities.Category", b =>
                 {
                     b.Navigation("CategoryTranslations");
 
                     b.Navigation("ProductInCategories");
                 });
 
-            modelBuilder.Entity("webapp.Data.Entities.Language", b =>
+            modelBuilder.Entity("Webapp.Data.Entities.Language", b =>
                 {
                     b.Navigation("CategoryTranslations");
 
                     b.Navigation("ProductTranslations");
                 });
 
-            modelBuilder.Entity("webapp.Data.Entities.Order", b =>
+            modelBuilder.Entity("Webapp.Data.Entities.Order", b =>
                 {
                     b.Navigation("OrderDetails");
                 });
 
-            modelBuilder.Entity("webapp.Data.Entities.Product", b =>
+            modelBuilder.Entity("Webapp.Data.Entities.Product", b =>
                 {
                     b.Navigation("Carts");
 
