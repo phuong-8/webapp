@@ -8,18 +8,18 @@ using System.Text;
 
 namespace webapp.Data.EF
 {
-    public class wepappSolutionDbContextFactory : IDesignTimeDbContextFactory<webappDBContext>
+    public class wepappSolutionDbContextFactory : IDesignTimeDbContextFactory<WebappDBContext>
     {
-        public webappDBContext CreateDbContext(string[] args)
+        public WebappDBContext CreateDbContext(string[] args)
         {
             IConfigurationRoot configuration = new ConfigurationBuilder()
                .SetBasePath(Directory.GetCurrentDirectory())
                .AddJsonFile("appsettings.json")
                .Build();
             var connectionString = configuration.GetConnectionString("webappSolutionDb");
-            var optionsBuilder = new DbContextOptionsBuilder<webappDBContext>();
+            var optionsBuilder = new DbContextOptionsBuilder<WebappDBContext>();
             optionsBuilder.UseSqlServer(connectionString);
-            return new webappDBContext(optionsBuilder.Options);
+            return new WebappDBContext(optionsBuilder.Options);
         }
     }
 }
