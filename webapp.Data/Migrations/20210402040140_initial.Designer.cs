@@ -9,9 +9,9 @@ using webapp.Data.EF;
 
 namespace webapp.Data.Migrations
 {
-    [DbContext(typeof(webappDBContext))]
-    [Migration("20210123165143_SeedData")]
-    partial class SeedData
+    [DbContext(typeof(WebappDBContext))]
+    [Migration("20210402040140_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -461,7 +461,7 @@ namespace webapp.Data.Migrations
                         new
                         {
                             Id = 1,
-                            DateCreated = new DateTime(2021, 1, 23, 23, 51, 42, 666, DateTimeKind.Local).AddTicks(4772),
+                            DateCreated = new DateTime(2021, 4, 2, 11, 1, 39, 929, DateTimeKind.Local).AddTicks(7148),
                             OriginalPrice = 100000m,
                             Price = 200000m,
                             Stock = 0,

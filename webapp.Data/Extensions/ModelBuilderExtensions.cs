@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -121,6 +122,38 @@ namespace webapp.Data.Extensions
                     CategoryId=1
                 }
                 );
+
+            var roleId = new Guid("425AC812-3905-4DC3-8958-EDC00B8C4BF7");
+            var roleAdmin = new Guid("F5C37570-FCDC-4993-8496-E2C50FBC2923");
+            modelBuilder.Entity<AppRole>().HasData(new AppRole
+            {
+                Id = roleId,
+                Name = "admin",
+                NormalizedName = "admin",
+                Description = "none"
+            });
+
+            var hasher = new PasswordHasher<AppUser>();
+            modelBuilder.Entity<AppUser>().HasData(new AppUser
+            {
+                Id = roleAdmin,
+                UserName = "admin",
+                NormalizedUserName = "admin",
+                Email = "nvpcntt08@gmail.com",
+                NormalizedEmail = "nvpcntt08@gmail.com",
+                EmailConfirmed = true,
+                PasswordHash = hasher.HashPassword(null, "123456"),
+                SecurityStamp = string.Empty,
+                FirstName = "phuong",
+                LastName = "nguyen",
+                Dob = new DateTime(2000,8,17),
+            });
+
+            modelBuilder.Entity<IdentityUserRole<Guid>>().HasData(new IdentityUserRole<Guid>
+            {
+                RoleId = roleId,
+                UserId = roleAdmin
+            });
         }
     }
 }
