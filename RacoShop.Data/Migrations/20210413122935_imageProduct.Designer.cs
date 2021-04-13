@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RacoShop.Data.EF;
 
 namespace RacoShop.Data.Migrations
 {
     [DbContext(typeof(RacoShopDBContext))]
-    partial class RacoShopDBContextModelSnapshot : ModelSnapshot
+    [Migration("20210413122935_imageProduct")]
+    partial class imageProduct
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

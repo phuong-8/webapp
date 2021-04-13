@@ -5,9 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using RacoShop.Data.EF;
 using Microsoft.EntityFrameworkCore;
-using RacoShop.Application.Catalog.Dtos;
-using RacoShop.Application.Catalog.Products.Dtos;
-using RacoShop.Application.Catalog.Products.Dtos.Public;
+using RacoShop.ViewModel.Catalog.Products;
+using RacoShop.ViewModel.Common;
 
 namespace RacoShop.Application.Catalog.Products
 {
@@ -19,7 +18,7 @@ namespace RacoShop.Application.Catalog.Products
             _context = context;
         }
 
-        public async Task<PagedResult<ProductViewModel>> GetAllByCategoryId(GetProductPagingRequest request)
+        public async Task<PagedResult<ProductViewModel>> GetAllByCategoryId(GetPublicProductPagingRequest request)
         {
             var query = from p in _context.Products
                         join pt in _context.ProductTranslations on p.Id equals pt.ProductId

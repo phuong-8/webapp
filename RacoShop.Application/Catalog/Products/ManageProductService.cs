@@ -5,21 +5,26 @@ using System.Text;
 using System.Threading.Tasks;
 using RacoShop.Data.EF;
 using RacoShop.Data.Entities;
-using RacoShop.Application.Catalog.Dtos;
-using RacoShop.Application.Catalog.Products;
-using RacoShop.Application.Catalog.Products.Dtos;
-using RacoShop.Application.Catalog.Products.Dtos.Manage;
 using RacoShop.Utilities.Exceptions;
 using Microsoft.EntityFrameworkCore;
+using RacoShop.Application.Catalog.Products;
+using RacoShop.ViewModel.Catalog.Products;
+using RacoShop.ViewModel.Common;
+using Microsoft.AspNetCore.Http;
+using System.Net.Http.Headers;
+using System.IO;
+using RacoShop.Application.Common;
 
 namespace RacoShop.Application.Catalog
 {
     public class ManageProductService : IManageProductService
     {
         private readonly RacoShopDBContext _context;
-        public ManageProductService(RacoShopDBContext context)
+        private readonly IStorageService _storageService;
+        public ManageProductService(RacoShopDBContext context, IStorageService storageService)
         {
             _context = context;
+            _storageService = storageService;
         }
 
         public async Task<int> Create(ProductCreateRequest request)
@@ -45,6 +50,22 @@ namespace RacoShop.Application.Catalog
                     }
                 }
             };
+            //Save image
+            if (request.ThumbnailImage != null)
+            {
+                product.ProductImages = new List<ProductImage>()
+                {
+                    new ProductImage()
+                    {
+                        Caption = "Thumbnail image",
+                        DateCreated = DateTime.Now,
+                        FileSize = request.ThumbnailImage.Length,
+                        ImagePath = await this.SaveFile(request.ThumbnailImage),
+                        IsDefault = true,
+                        SortOrder = 1,
+                    }
+                }; 
+            }
             _context.Products.Add(product);
             return await _context.SaveChangesAsync();
         }
@@ -54,7 +75,14 @@ namespace RacoShop.Application.Catalog
             var product = await _context.Products.FindAsync(productId);
             if (product == null)
                 throw new RacoShopException($"Can't not find product {productId}");
+            var images = _context.ProductImages.Where(i => i.ProductId == productId);
+            foreach(var image in images)
+            {
+                await _storageService.DeleteFileAsync(image.ImagePath);
+            }
+
             _context.Products.Remove(product);
+            
             return await _context.SaveChangesAsync();
         }
 
@@ -65,7 +93,7 @@ namespace RacoShop.Application.Catalog
             await _context.SaveChangesAsync();
         }
 
-        public async Task<PagedResult<ProductViewModel>> GetAllPaging(GetProductPagingRequest request)
+        public async Task<PagedResult<ProductViewModel>> GetAllPaging(GetManageProductPagingRequest request)
         {
             var query = from p in _context.Products
                         join pt in _context.ProductTranslations on p.Id equals pt.ProductId
@@ -124,7 +152,17 @@ namespace RacoShop.Application.Catalog
             productTranlations.Description = request.Description;
             productTranlations.SeoDescription = request.SeoDescription;
             productTranlations.SeoTitle = request.SeoTitle;
-
+            //Save image
+            if (request.ThumbnailImage != null)
+            {
+                var thumbnailImage = await _context.ProductImages.FirstOrDefaultAsync(i => i.IsDefault == true && i.ProductId == request.Id);
+                if(thumbnailImage != null)
+                {
+                    thumbnailImage.FileSize = request.ThumbnailImage.Length;
+                    thumbnailImage.ImagePath = await this.SaveFile(request.ThumbnailImage);
+                    _context.ProductImages.Update(thumbnailImage);
+                }
+            }
             return await _context.SaveChangesAsync();
         }
 
@@ -144,6 +182,49 @@ namespace RacoShop.Application.Catalog
             product.Stock += addedQuatity;
 
             return await _context.SaveChangesAsync() > 0;
+        }
+
+        private async Task<string> SaveFile(IFormFile file)
+        {
+            var originalFileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
+            var fileName = $"{Guid.NewGuid()}{Path.GetExtension(originalFileName)}";
+            await _storageService.SaveFileAsync(file.OpenReadStream(), fileName); 
+            return fileName;
+        }
+
+        public Task<int> AddImages(int productId, List<FormFile> files)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<int> RemoveImages(int imageId)
+        {
+            var productImage = await _context.ProductImages.FindAsync(imageId);
+            if (productImage == null)
+                throw new RacoShopException($"Cannot find an image with id {imageId}");
+            _context.ProductImages.Remove(productImage);
+            return await _context.SaveChangesAsync();
+        }
+
+        public Task<int> UpdateImage(int imageId, string caption, bool isDefault)
+        {
+            /*var productImage = await _context.ProductImages.FindAsync(imageId);
+            if (productImage == null)
+                throw new RacoShopException($"Cannot find an image with id {imageId}");
+
+            if (request.ImageFile != null)
+            {
+                productImage.ImagePath = await this.SaveFile(request.ImageFile);
+                productImage.FileSize = request.ImageFile.Length;
+            }
+            _context.ProductImages.Update(productImage);
+            return await _context.SaveChangesAsync()*/
+            throw new NotImplementedException();
+        }
+
+        public Task<List<ProductImageViewModel>> GetListImage(int productId)
+        {
+            throw new NotImplementedException();
         }
     }
 }

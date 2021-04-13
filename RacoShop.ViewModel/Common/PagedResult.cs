@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace RacoShop.Application.Catalog.Dtos
+namespace RacoShop.ViewModel.Common
 {
     public class PagedResult<T>
     {

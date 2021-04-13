@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace RacoShop.Application.Dtos
+namespace RacoShop.ViewModel.Common
 {
     public class PagingRequestBase
     {
