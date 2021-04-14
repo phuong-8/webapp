@@ -8,18 +8,18 @@ using System.Text;
 
 namespace RacoShop.Data.EF
 {
-    public class WepappSolutionDbContextFactory : IDesignTimeDbContextFactory<RacoShopDBContext>
+    public class RacoShopSolutionDbContextFactory : IDesignTimeDbContextFactory<RacoShopDbContext>
     {
-        public RacoShopDBContext CreateDbContext(string[] args)
+        public RacoShopDbContext CreateDbContext(string[] args)
         {
             IConfigurationRoot configuration = new ConfigurationBuilder()
                .SetBasePath(Directory.GetCurrentDirectory())
                .AddJsonFile("appsettings.json")
                .Build();
             var connectionString = configuration.GetConnectionString("RacoShopSolutionDb");
-            var optionsBuilder = new DbContextOptionsBuilder<RacoShopDBContext>();
+            var optionsBuilder = new DbContextOptionsBuilder<RacoShopDbContext>();
             optionsBuilder.UseSqlServer(connectionString);
-            return new RacoShopDBContext(optionsBuilder.Options);
+            return new RacoShopDbContext(optionsBuilder.Options);
         }
     }
 }

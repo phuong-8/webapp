@@ -8,8 +8,8 @@ using RacoShop.Data.EF;
 
 namespace RacoShop.Data.Migrations
 {
-    [DbContext(typeof(RacoShopDBContext))]
-    partial class RacoShopDBContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(RacoShopDbContext))]
+    partial class RacoShopDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -344,7 +344,7 @@ namespace RacoShop.Data.Migrations
                         new
                         {
                             Id = new Guid("425ac812-3905-4dc3-8958-edc00b8c4bf7"),
-                            ConcurrencyStamp = "8691bc43-676e-4437-8ca8-0d6a4dd2b0f7",
+                            ConcurrencyStamp = "c560947b-717a-4ee7-844e-c2466d837155",
                             Description = "none",
                             Name = "admin",
                             NormalizedName = "admin"
@@ -421,7 +421,7 @@ namespace RacoShop.Data.Migrations
                         {
                             Id = new Guid("f5c37570-fcdc-4993-8496-e2c50fbc2923"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "79da7d58-c789-472a-ad0e-472e51127c14",
+                            ConcurrencyStamp = "68c133d6-bebe-453c-9261-6eea075da2da",
                             Dob = new DateTime(2000, 8, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "nvpcntt08@gmail.com",
                             EmailConfirmed = true,
@@ -430,7 +430,7 @@ namespace RacoShop.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "nvpcntt08@gmail.com",
                             NormalizedUserName = "admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEMJvg8kNxq/luwNMWjC098D0e578BCnXe3IEcDlHA+/avW9ZlhXWX2b8uBuqkcbOlg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAELpB7d75bOYidYkubPztxLYYwD5r1GrlscqxClw5uEylPY8K3N/OoMdlqDX06Dze1w==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -774,7 +774,7 @@ namespace RacoShop.Data.Migrations
                         new
                         {
                             Id = 1,
-                            DateCreated = new DateTime(2021, 4, 13, 19, 29, 34, 44, DateTimeKind.Local).AddTicks(5524),
+                            DateCreated = new DateTime(2021, 4, 14, 10, 4, 23, 344, DateTimeKind.Local).AddTicks(4072),
                             OriginalPrice = 100000m,
                             Price = 200000m,
                             Stock = 0,

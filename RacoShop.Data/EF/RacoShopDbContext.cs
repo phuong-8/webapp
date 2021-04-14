@@ -10,9 +10,9 @@ using RacoShop.Data.Extensions;
 
 namespace RacoShop.Data.EF
 {
-    public class RacoShopDBContext : IdentityDbContext
+    public class RacoShopDbContext : IdentityDbContext
     {
-        public RacoShopDBContext(DbContextOptions options) : base(options)
+        public RacoShopDbContext(DbContextOptions options) : base(options)
         {
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)

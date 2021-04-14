@@ -20,6 +20,8 @@ namespace RacoShop.Application.Catalog.Products
 
         Task AddViewCount(int productId);
 
+        Task<ProductViewModel> GetById(int productId, string languageId);
+
         Task<int> Delete(int productId);
 
         Task<PagedResult<ProductViewModel>>  GetAllPaging(GetManageProductPagingRequest request);

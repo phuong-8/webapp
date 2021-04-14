@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
@@ -9,7 +9,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\RacoShop.Application\RacoShop.Application.csproj" />
+    <ProjectReference Include="..\RacoShop.Data\RacoShop.Data.csproj" />
+    <ProjectReference Include="..\RacoShop.Utilities\RacoShop.Utilities.csproj" />
+    <ProjectReference Include="..\RacoShop.ViewModel\RacoShop.ViewModel.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\user-image\" />
   </ItemGroup>
 
 </Project>

@@ -2,11 +2,16 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using RacoShop.Application.Catalog.Products;
+using RacoShop.Application.Common;
+using RacoShop.Data.EF;
+using RacoShop.Utilities.Constants;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +31,12 @@ namespace RacoShop.BackendApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<RacoShopDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString(SystemConstants.MainConnectionString)));
+            //Declare DI
+            
+            services.AddTransient<IStorageService, FileStorageService>();
+            services.AddTransient<IPublicProductService, PublicProductService>();
+            services.AddTransient<IManageProductService, ManageProductService>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

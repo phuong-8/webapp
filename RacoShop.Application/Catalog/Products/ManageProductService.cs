@@ -15,13 +15,13 @@ using System.Net.Http.Headers;
 using System.IO;
 using RacoShop.Application.Common;
 
-namespace RacoShop.Application.Catalog
+namespace RacoShop.Application.Catalog.Products
 {
     public class ManageProductService : IManageProductService
     {
-        private readonly RacoShopDBContext _context;
+        private readonly RacoShopDbContext _context;
         private readonly IStorageService _storageService;
-        public ManageProductService(RacoShopDBContext context, IStorageService storageService)
+        public ManageProductService(RacoShopDbContext context, IStorageService storageService)
         {
             _context = context;
             _storageService = storageService;
@@ -67,7 +67,8 @@ namespace RacoShop.Application.Catalog
                 }; 
             }
             _context.Products.Add(product);
-            return await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
+            return product.Id;
         }
 
         public async Task<int> Delete(int productId)
@@ -92,7 +93,37 @@ namespace RacoShop.Application.Catalog
             product.ViewCount += 1;
             await _context.SaveChangesAsync();
         }
+        public async Task<ProductViewModel> GetById(int productId, string languageId)
+        {
+            var product = await _context.Products.FindAsync(productId);
+            var productTranslation = await _context.ProductTranslations.FirstOrDefaultAsync(x => x.ProductId == productId && x.LanguageId == languageId);
+            if (product == null || productTranslation == null) throw new RacoShopException($"Can't not find product with Id: {productId}");
+            var categories = await (from c in _context.Categories
+                                    join ct in _context.CategoryTranslations on c.Id equals ct.CategoryId
+                                    join pic in _context.ProductInCategories on c.Id equals pic.CategoryId
+                                    where pic.ProductId == productId 
+                                    select ct.Name).ToListAsync();
 
+            var image = await _context.ProductImages.Where(x => x.ProductId == productId && x.IsDefault == true).FirstOrDefaultAsync();
+
+            var productViewModel = new ProductViewModel()
+            {
+                Id = product.Id,
+                DateCreated = product.DateCreated,
+                Description = productTranslation != null ? productTranslation.Description : null,
+                LanguageId = productTranslation.LanguageId,
+                Details = productTranslation != null ? productTranslation.Details : null,
+                Name = productTranslation != null ? productTranslation.Name : null,
+                OriginalPrice = product.OriginalPrice,
+                Price = product.Price,
+                SeoAlias = productTranslation != null ? productTranslation.SeoAlias : null,
+                SeoDescription = productTranslation != null ? productTranslation.SeoDescription : null,
+                SeoTitle = productTranslation != null ? productTranslation.SeoTitle : null,
+                Stock = product.Stock,
+                ViewCount = product.ViewCount,
+            };
+            return productViewModel;
+        }
         public async Task<PagedResult<ProductViewModel>> GetAllPaging(GetManageProductPagingRequest request)
         {
             var query = from p in _context.Products
@@ -143,15 +174,15 @@ namespace RacoShop.Application.Catalog
         public async Task<int> Update(ProductUpdateRequest request)
         {
             var product = await _context.Products.FindAsync(request.Id);
-            var productTranlations = await _context.ProductTranslations
+            var productTranslation = await _context.ProductTranslations
                 .FirstOrDefaultAsync(x => x.ProductId == request.Id && x.LanguageId == request.LanguageId);
-            if(product == null || productTranlations == null) throw new RacoShopException($"Can't not find product with Id: {request.Id}");
-            productTranlations.Name = request.Name;
-            productTranlations.SeoAlias = request.SeoAlias;
-            productTranlations.Details = request.Details;
-            productTranlations.Description = request.Description;
-            productTranlations.SeoDescription = request.SeoDescription;
-            productTranlations.SeoTitle = request.SeoTitle;
+            if(product == null || productTranslation == null) throw new RacoShopException($"Can't not find product with Id: {request.Id}");
+            productTranslation.Name = request.Name;
+            productTranslation.SeoAlias = request.SeoAlias;
+            productTranslation.Details = request.Details;
+            productTranslation.Description = request.Description;
+            productTranslation.SeoDescription = request.SeoDescription;
+            productTranslation.SeoTitle = request.SeoTitle;
             //Save image
             if (request.ThumbnailImage != null)
             {
@@ -226,5 +257,7 @@ namespace RacoShop.Application.Catalog
         {
             throw new NotImplementedException();
         }
+
+
     }
 }
