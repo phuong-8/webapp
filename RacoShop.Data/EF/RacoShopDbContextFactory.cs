@@ -8,7 +8,7 @@ using System.Text;
 
 namespace RacoShop.Data.EF
 {
-    public class RacoShopSolutionDbContextFactory : IDesignTimeDbContextFactory<RacoShopDbContext>
+    public class RacoShopDbContextFactory : IDesignTimeDbContextFactory<RacoShopDbContext>
     {
         public RacoShopDbContext CreateDbContext(string[] args)
         {

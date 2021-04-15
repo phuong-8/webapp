@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace RacoShop.Data.Migrations
 {
-    public partial class database : Migration
+    public partial class InitialDatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -575,7 +575,7 @@ namespace RacoShop.Data.Migrations
             migrationBuilder.InsertData(
                 table: "AppRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Description", "Name", "NormalizedName" },
-                values: new object[] { new Guid("425ac812-3905-4dc3-8958-edc00b8c4bf7"), "c560947b-717a-4ee7-844e-c2466d837155", "none", "admin", "admin" });
+                values: new object[] { new Guid("425ac812-3905-4dc3-8958-edc00b8c4bf7"), "0d7d76ae-0cae-40e4-ace7-43c46b553430", "none", "admin", "admin" });
 
             migrationBuilder.InsertData(
                 table: "AppUserRoles",
@@ -585,7 +585,7 @@ namespace RacoShop.Data.Migrations
             migrationBuilder.InsertData(
                 table: "AppUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Dob", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { new Guid("f5c37570-fcdc-4993-8496-e2c50fbc2923"), 0, "68c133d6-bebe-453c-9261-6eea075da2da", new DateTime(2000, 8, 17, 0, 0, 0, 0, DateTimeKind.Unspecified), "nvpcntt08@gmail.com", true, "phuong", "nguyen", false, null, "nvpcntt08@gmail.com", "admin", "AQAAAAEAACcQAAAAELpB7d75bOYidYkubPztxLYYwD5r1GrlscqxClw5uEylPY8K3N/OoMdlqDX06Dze1w==", null, false, "", false, "admin" });
+                values: new object[] { new Guid("f5c37570-fcdc-4993-8496-e2c50fbc2923"), 0, "aeb2bbc5-9fc6-4c77-82d0-7d69ad464899", new DateTime(2000, 8, 17, 0, 0, 0, 0, DateTimeKind.Unspecified), "nvpcntt08@gmail.com", true, "phuong", "nguyen", false, null, "nvpcntt08@gmail.com", "admin", "AQAAAAEAACcQAAAAENutmzzTNLU6v0H8o93OjLdwGSo9eDZEAsn1gxXSjSmemyy+hQPazmM9/p8DsXhhUA==", null, false, "", false, "admin" });
 
             migrationBuilder.InsertData(
                 table: "Categories",
@@ -608,7 +608,7 @@ namespace RacoShop.Data.Migrations
             migrationBuilder.InsertData(
                 table: "Products",
                 columns: new[] { "Id", "DateCreated", "IsFeatured", "OriginalPrice", "Price" },
-                values: new object[] { 1, new DateTime(2021, 4, 14, 10, 4, 23, 344, DateTimeKind.Local).AddTicks(4072), null, 100000m, 200000m });
+                values: new object[] { 1, new DateTime(2021, 4, 14, 23, 52, 4, 311, DateTimeKind.Local).AddTicks(8576), null, 100000m, 200000m });
 
             migrationBuilder.InsertData(
                 table: "CategoryTranslations",

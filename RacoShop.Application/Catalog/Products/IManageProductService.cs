@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using RacoShop.ViewModel.Catalog.ProductImages;
 using RacoShop.ViewModel.Catalog.Products;
 using RacoShop.ViewModel.Common;
 using System;
@@ -26,11 +27,13 @@ namespace RacoShop.Application.Catalog.Products
 
         Task<PagedResult<ProductViewModel>>  GetAllPaging(GetManageProductPagingRequest request);
 
-        Task<int> AddImages(int productId, List<FormFile> files);
+        Task<int> AddImages(int productId, ProductImageCreateRequest request);
 
         Task<int> RemoveImages(int imageId);
 
-        Task<int> UpdateImage(int imageId, string caption, bool isDefault);
+        Task<int> UpdateImage(int imageId, ProductImageUpdateRequest request);
+
+        Task<ProductImageViewModel> GetImageById(int imageId);
 
         Task<List<ProductImageViewModel>> GetListImage(int productId);
 

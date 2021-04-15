@@ -2,21 +2,20 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using RacoShop.Data.Configuration;
 using RacoShop.Data.Entities;
 using RacoShop.Data.Extensions;
 
 namespace RacoShop.Data.EF
 {
-    public class RacoShopDbContext : IdentityDbContext
+    public class RacoShopDbContext : IdentityDbContext<AppUser, AppRole, Guid>
     {
         public RacoShopDbContext(DbContextOptions options) : base(options)
         {
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            //base.OnModelCreating(modelBuilder);
             //fluent API
             modelBuilder.ApplyConfiguration(new CartConfiguration());
 
@@ -53,6 +52,7 @@ namespace RacoShop.Data.EF
             //Data seeding
 
             modelBuilder.Seed();
+            
         }
         public DbSet<AppConfig> AppConfigs { get; set; }
         public DbSet<AppRole> AppRoles { get; set; }

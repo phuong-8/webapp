@@ -9,8 +9,7 @@ namespace RacoShop.Application.Catalog.Products
 {
     public interface IPublicProductService
     {
-        public Task<PagedResult<ProductViewModel>> GetAllByCategoryId(GetPublicProductPagingRequest request);
+        public Task<PagedResult<ProductViewModel>> GetAllByCategoryId(string languageId, GetPublicProductPagingRequest request);
 
-        public Task<List<ProductViewModel>> GetAll();
     }
 }

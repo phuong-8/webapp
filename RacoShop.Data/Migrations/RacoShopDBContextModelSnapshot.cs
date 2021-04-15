@@ -344,7 +344,7 @@ namespace RacoShop.Data.Migrations
                         new
                         {
                             Id = new Guid("425ac812-3905-4dc3-8958-edc00b8c4bf7"),
-                            ConcurrencyStamp = "c560947b-717a-4ee7-844e-c2466d837155",
+                            ConcurrencyStamp = "0d7d76ae-0cae-40e4-ace7-43c46b553430",
                             Description = "none",
                             Name = "admin",
                             NormalizedName = "admin"
@@ -421,7 +421,7 @@ namespace RacoShop.Data.Migrations
                         {
                             Id = new Guid("f5c37570-fcdc-4993-8496-e2c50fbc2923"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "68c133d6-bebe-453c-9261-6eea075da2da",
+                            ConcurrencyStamp = "aeb2bbc5-9fc6-4c77-82d0-7d69ad464899",
                             Dob = new DateTime(2000, 8, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "nvpcntt08@gmail.com",
                             EmailConfirmed = true,
@@ -430,7 +430,7 @@ namespace RacoShop.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "nvpcntt08@gmail.com",
                             NormalizedUserName = "admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAELpB7d75bOYidYkubPztxLYYwD5r1GrlscqxClw5uEylPY8K3N/OoMdlqDX06Dze1w==",
+                            PasswordHash = "AQAAAAEAACcQAAAAENutmzzTNLU6v0H8o93OjLdwGSo9eDZEAsn1gxXSjSmemyy+hQPazmM9/p8DsXhhUA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -774,7 +774,7 @@ namespace RacoShop.Data.Migrations
                         new
                         {
                             Id = 1,
-                            DateCreated = new DateTime(2021, 4, 14, 10, 4, 23, 344, DateTimeKind.Local).AddTicks(4072),
+                            DateCreated = new DateTime(2021, 4, 14, 23, 52, 4, 311, DateTimeKind.Local).AddTicks(8576),
                             OriginalPrice = 100000m,
                             Price = 200000m,
                             Stock = 0,
