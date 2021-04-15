@@ -23,8 +23,7 @@ namespace RacoShop.BackendApi.Controllers
         [HttpPost("authenticate")]
         [AllowAnonymous]
         public async Task<IActionResult> Authenticate([FromForm]LoginRequest request)
-        {
-            
+        {   
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             var resultToken = await _userService.Authenicate(request);
