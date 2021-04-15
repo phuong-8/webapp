@@ -26,6 +26,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.Domain", "2.Domain", "{09
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.Host", "3.Host", "{D80FBB72-35FA-4694-A6F7-0658726A64F4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RacoShop.AdminApp", "RacoShop.AdminApp\RacoShop.AdminApp.csproj", "{6A2B5BEA-5583-447B-8938-BA85DD32882F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -56,6 +58,10 @@ Global
 		{0C3BE7A2-7B41-4FA8-A530-44A5E77D53E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0C3BE7A2-7B41-4FA8-A530-44A5E77D53E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0C3BE7A2-7B41-4FA8-A530-44A5E77D53E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A2B5BEA-5583-447B-8938-BA85DD32882F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A2B5BEA-5583-447B-8938-BA85DD32882F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A2B5BEA-5583-447B-8938-BA85DD32882F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A2B5BEA-5583-447B-8938-BA85DD32882F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,6 +73,7 @@ Global
 		{0C49F681-7F37-40FD-B388-8D5DA4C1B9CF} = {E068E385-6821-49AC-828B-578032F4629F}
 		{A38DB7E5-5363-411A-8022-6DF304028BFA} = {E068E385-6821-49AC-828B-578032F4629F}
 		{0C3BE7A2-7B41-4FA8-A530-44A5E77D53E6} = {D80FBB72-35FA-4694-A6F7-0658726A64F4}
+		{6A2B5BEA-5583-447B-8938-BA85DD32882F} = {D80FBB72-35FA-4694-A6F7-0658726A64F4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DC7871AA-91E8-4E26-BBD8-B4720AD6A8B8}

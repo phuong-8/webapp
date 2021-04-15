@@ -1,28 +1,25 @@
 ﻿{
-  "$schema": "http://json.schemastore.org/launchsettings.json",
   "iisSettings": {
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:20732",
-      "sslPort": 44330
+      "applicationUrl": "http://localhost:29065",
+      "sslPort": 44343
     }
   },
   "profiles": {
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "RacoShop.BackendApi": {
+    "RacoShop.AdminApp": {
       "commandName": "Project",
       "dotnetRunMessages": "true",
-      "launchBrowser": false,
-      "launchUrl": "swagger",
-      "applicationUrl": "https://localhost:5001",
+      "launchBrowser": true,
+      "applicationUrl": "https://localhost:5002",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
