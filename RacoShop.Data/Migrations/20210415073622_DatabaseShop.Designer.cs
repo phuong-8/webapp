@@ -10,8 +10,8 @@ using RacoShop.Data.EF;
 namespace RacoShop.Data.Migrations
 {
     [DbContext(typeof(RacoShopDbContext))]
-    [Migration("20210414165205_InitialDatabase")]
-    partial class InitialDatabase
+    [Migration("20210415073622_DatabaseShop")]
+    partial class DatabaseShop
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,25 +20,6 @@ namespace RacoShop.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.5")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NormalizedName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Roles");
-                });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
                 {
@@ -61,79 +42,6 @@ namespace RacoShop.Data.Migrations
                     b.ToTable("AppRoleClaim");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("ClaimType")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ClaimValue")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("RoleId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("RoleClaims");
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("AccessFailedCount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("LockoutEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("NormalizedEmail")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NormalizedUserName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PasswordHash")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("PhoneNumberConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("SecurityStamp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("TwoFactorEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("UserName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Users");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", b =>
                 {
                     b.Property<int>("Id")
@@ -153,27 +61,6 @@ namespace RacoShop.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("AppUserClaims");
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("ClaimType")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ClaimValue")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("UserClaims");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
@@ -346,7 +233,7 @@ namespace RacoShop.Data.Migrations
                         new
                         {
                             Id = new Guid("425ac812-3905-4dc3-8958-edc00b8c4bf7"),
-                            ConcurrencyStamp = "0d7d76ae-0cae-40e4-ace7-43c46b553430",
+                            ConcurrencyStamp = "f8416024-2e9e-467c-ae47-7878dfe07a41",
                             Description = "none",
                             Name = "admin",
                             NormalizedName = "admin"
@@ -423,7 +310,7 @@ namespace RacoShop.Data.Migrations
                         {
                             Id = new Guid("f5c37570-fcdc-4993-8496-e2c50fbc2923"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "aeb2bbc5-9fc6-4c77-82d0-7d69ad464899",
+                            ConcurrencyStamp = "c714920a-af1c-40a4-af00-a30324d691a4",
                             Dob = new DateTime(2000, 8, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "nvpcntt08@gmail.com",
                             EmailConfirmed = true,
@@ -432,7 +319,7 @@ namespace RacoShop.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "nvpcntt08@gmail.com",
                             NormalizedUserName = "admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAENutmzzTNLU6v0H8o93OjLdwGSo9eDZEAsn1gxXSjSmemyy+hQPazmM9/p8DsXhhUA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHC0PzQsVpmLMXbNzxCUAPLBH7aPfRw2WipNItnfrwqvsS1bLSwwLAfSqqm4WMYUpQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -776,7 +663,7 @@ namespace RacoShop.Data.Migrations
                         new
                         {
                             Id = 1,
-                            DateCreated = new DateTime(2021, 4, 14, 23, 52, 4, 311, DateTimeKind.Local).AddTicks(8576),
+                            DateCreated = new DateTime(2021, 4, 15, 14, 36, 21, 767, DateTimeKind.Local).AddTicks(3572),
                             OriginalPrice = 100000m,
                             Price = 200000m,
                             Stock = 0,

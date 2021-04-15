@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using RacoShop.Application.Catalog.Products;
 using RacoShop.ViewModel.Catalog.ProductImages;
 using RacoShop.ViewModel.Catalog.Products;
@@ -11,6 +12,7 @@ namespace RacoShop.BackendApi.Controllers
 {  
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ProductsController : Controller
     {
         private readonly IPublicProductService _publicProductService;
