@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using RacoShop.Data.Entities;
+using RacoShop.ViewModel.Common;
 using RacoShop.ViewModel.System.Users;
 using System;
 using System.Collections.Generic;
@@ -47,6 +49,37 @@ namespace RacoShop.Application.System.Users
             var token = new JwtSecurityToken(_config["Tokens:Issuer"], _config["Tokens:Issuer"], claims,
             expires: DateTime.Now.AddHours(3), signingCredentials: creds);
             return  new JwtSecurityTokenHandler().WriteToken(token);
+        }
+
+        public async Task<PagedResult<UserVm>> GetUsersPaging(GetUsersPagingRequest request)
+        {
+            var query = _userManager.Users;
+            if (!string.IsNullOrEmpty(request.Keyword))
+            {
+                query = query.Where(x => x.UserName.Contains(request.Keyword) || x.PhoneNumber.Contains(request.Keyword));
+            }
+            //paging
+            int totalRow = await query.CountAsync();
+            var data = await query.Skip((request.PageIndex - 1) * request.PageSize)
+                .Take(request.PageSize)
+                .Select(
+                    x => new UserVm()
+                    {
+                        Email = x.Email,
+                        FirstName = x.FirstName,
+                        LastName = x.LastName,
+                        UserName = x.UserName,
+                        Id = x.Id,
+                        PhoneNumber = x.PhoneNumber
+                    }
+                ).ToListAsync();
+            // select
+            var pagedResult = new PagedResult<UserVm>()
+            {
+                TotalRecord = totalRow,
+                Items = data,
+            };
+            return pagedResult;  
         }
 
         public async Task<bool> Register(RegisterRequest request)

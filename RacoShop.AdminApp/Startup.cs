@@ -24,6 +24,7 @@ namespace RacoShop.AdminApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddHttpClient();
+            
             //add authentication
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options => {
@@ -33,6 +34,11 @@ namespace RacoShop.AdminApp
 
             services.AddControllersWithViews().AddFluentValidation(
                 fv => fv.RegisterValidatorsFromAssemblyContaining<LoginRequestValidator>());
+
+            //add session
+            services.AddSession(options => { 
+                options.IdleTimeout = TimeSpan.FromMinutes(30); 
+            });
 
             services.AddTransient<IUserApiClient, UserApiClient>();
 
@@ -62,10 +68,14 @@ namespace RacoShop.AdminApp
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
             app.UseAuthentication();
+
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {

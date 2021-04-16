@@ -1,4 +1,5 @@
-﻿using RacoShop.ViewModel.System.Users;
+﻿using RacoShop.ViewModel.Common;
+using RacoShop.ViewModel.System.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,5 +13,7 @@ namespace RacoShop.Application.System.Users
         Task<string> Authenicate(LoginRequest request);
 
         Task<bool> Register(RegisterRequest request);
+
+        Task<PagedResult<UserVm>> GetUsersPaging(GetUsersPagingRequest request);
     }
 }
