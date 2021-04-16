@@ -1,4 +1,4 @@
-﻿@using RacoShop.ViewModel.System.Users 
+﻿@using RacoShop.ViewModel.System.Users
 @model LoginRequest
 @{
     Layout = null;
@@ -25,7 +25,7 @@
                             <div class="card shadow-lg border-0 rounded-lg mt-5">
                                 <div class="card-header"><h3 class="text-center font-weight-light my-4">Đăng nhập</h3></div>
                                 <div class="card-body">
-                                    <form asp-action="Login" asp-controller="User" method="post">
+                                    <form asp-action="Index" asp-controller="Login" method="post">
                                         <div class="form-group">
                                             <label class="small mb-1" for="inputEmailAddress">Tài khoản</label>
                                             <input class="form-control py-4" id="inputEmailAddress" asp-for="UserName" type="text" placeholder="Nhập tài khoản" />

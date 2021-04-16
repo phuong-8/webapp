@@ -10,6 +10,7 @@ namespace RacoShop.ViewModel.System.Users
         [Display(Name = "Họ")]
         public string LastName { get; set; }
         [Display(Name = "Ngày sinh")]
+        [DataType(DataType.Date)]
         public DateTime Dob { get; set; }
         public string Email { get; set; }
         [Display(Name = "Số điện thoại")]
@@ -17,8 +18,10 @@ namespace RacoShop.ViewModel.System.Users
         [Display(Name = "Tên tài khoản")]
         public string UserName { get; set; }
         [Display(Name = "Mật khẩu")]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
         [Display(Name = "Xác nhận mật khẩu")]
+        [DataType(DataType.Password)]
         public string ConfirmPassword { get; set; }
     }
 }

@@ -19,7 +19,7 @@ namespace RacoShop.BackendApi.Controllers
         }
 
         [HttpPost("authenticate")]
-        //[AllowAnonymous]
+        [AllowAnonymous]
         public async Task<IActionResult> Authenticate([FromBody]LoginRequest request)
         {   
             if (!ModelState.IsValid)
@@ -32,7 +32,7 @@ namespace RacoShop.BackendApi.Controllers
         }
 
         [HttpPost]
-        //[AllowAnonymous]
+        [AllowAnonymous]
         public async Task<IActionResult> Register([FromBody] RegisterRequest request)
         {
 

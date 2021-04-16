@@ -16,7 +16,7 @@ namespace RacoShop.ViewModel.System.Users
             RuleFor(x => x.Dob).GreaterThan(DateTime.Now.AddYears(-100)).WithMessage("Birthday can not getter than 100 years");
 
             RuleFor(x => x.Email).NotEmpty().WithMessage("Email is required")
-                    .Matches("/^.+@.+$/").WithMessage("Email format not match");
+                    .Matches("^[a-z][a-z0-9_\\.]{5,32}@[a-z0-9]{2,}(\\.[a-z0-9]{2,4}){1,2}$").WithMessage("Email format not match");
 
             RuleFor(x => x.PhoneNumber).NotEmpty().WithMessage("Phone is required");
 

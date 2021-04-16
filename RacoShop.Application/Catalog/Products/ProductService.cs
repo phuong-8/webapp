@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using RacoShop.Data.EF;
 using RacoShop.Data.Entities;
 using RacoShop.Utilities.Exceptions;
 using Microsoft.EntityFrameworkCore;
-using RacoShop.Application.Catalog.Products;
 using RacoShop.ViewModel.Catalog.Products;
 using RacoShop.ViewModel.Common;
 using Microsoft.AspNetCore.Http;

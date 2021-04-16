@@ -23,7 +23,6 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th>Id</th>
                             <th>Tên</th>
                             <th>Họ</th>
                             <th>Sdt</th>
@@ -36,9 +35,6 @@
                         @foreach (var item in Model.Items)
                         {
                             <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Id)
-                                </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.FirstName)
                                 </td>
