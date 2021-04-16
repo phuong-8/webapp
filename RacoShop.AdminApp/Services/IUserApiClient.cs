@@ -12,5 +12,7 @@ namespace RacoShop.AdminApp.Services
         Task<string> Authenticate(LoginRequest request);
 
         Task<PagedResult<UserVm>> GetUsersPaging(GetUsersPagingRequest request);
+
+        Task<bool> RegisterUser(RegisterRequest request);
     }
 }
